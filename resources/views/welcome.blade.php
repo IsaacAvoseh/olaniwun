@@ -15,7 +15,7 @@
     <style>
         .welcome-page {
             height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         }
         .welcome-box {
             background-color: rgba(255, 255, 255, 0.9);

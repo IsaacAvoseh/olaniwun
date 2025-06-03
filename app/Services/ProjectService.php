@@ -12,34 +12,17 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProjectService
 {
-    /**
-     * Get paginated projects with employee relationship.
-     *
-     * @param int $perPage
-     * @return \Illuminate\Pagination\LengthAwarePaginator
-     */
     public function getPaginatedProjects(int $perPage = 10): LengthAwarePaginator
     {
         return Project::with(['employee', 'employee.department'])->paginate($perPage);
     }
 
-    /**
-     * Get all employees for project assignment.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
     public function getAllEmployees(): Collection
     {
         return Employee::with('department')->get();
     }
 
-    /**
-     * Create a new project.
-     *
-     * @param array $data
-     * @return \App\Models\Project
-     * @throws \Illuminate\Validation\ValidationException
-     */
+
     public function createProject(array $data): Project
     {
         $validator = Validator::make($data, [
@@ -104,23 +87,12 @@ class ProjectService
         return $project->fresh();
     }
 
-    /**
-     * Delete a project.
-     *
-     * @param \App\Models\Project $project
-     * @return bool
-     */
     public function deleteProject(Project $project): bool
     {
         return $project->delete();
     }
 
-    /**
-     * Get projects by employee.
-     *
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
+
     public function getProjectsByEmployee(Employee $employee): Collection
     {
         return $employee->projects;

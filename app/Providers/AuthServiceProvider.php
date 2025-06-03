@@ -21,7 +21,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Define gates for role-based access control
         Gate::define('admin-only', function ($user) {
             return $user->hasRole('admin');
         });
