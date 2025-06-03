@@ -41,7 +41,7 @@
                                     @foreach ($departmentSalaries as $salary)
                                         <tr>
                                             <td>{{ $salary->department->name }}</td>
-                                            <td>${{ number_format($salary->total_salary, 2) }}</td>
+                                            <td>N{{ number_format($salary->total_salary, 2) }}</td>
                                             <td>
                                                 <a href="{{ route('departments.show', $salary->department) }}" class="btn btn-info btn-sm">
                                                     <i class="fas fa-eye"></i> View Department
@@ -53,7 +53,7 @@
                                 <tfoot>
                                     <tr>
                                         <th>Total</th>
-                                        <th>${{ number_format($departmentSalaries->sum('total_salary'), 2) }}</th>
+                                        <th>N{{ number_format($departmentSalaries->sum('total_salary'), 2) }}</th>
                                         <th></th>
                                     </tr>
                                 </tfoot>

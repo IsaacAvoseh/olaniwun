@@ -10,29 +10,12 @@ use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
-    /**
-     * The user service instance.
-     *
-     * @var \App\Services\UserService
-     */
     protected $userService;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param \App\Services\UserService $userService
-     * @return void
-     */
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }
 
-    /**
-     * Display a listing of the users.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // Only admin can view all users
@@ -47,11 +30,6 @@ class UserController extends Controller
         return view('users.index', compact('users', 'roles'));
     }
 
-    /**
-     * Show the form for creating a new user.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         // Only admin can create users
@@ -64,12 +42,7 @@ class UserController extends Controller
         return view('users.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created user in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         // Only admin can store users
@@ -89,15 +62,8 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Display the specified user.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
-        // Users can only view their own profile, admin can view any
         if (!Auth::user()->hasRole('admin') && Auth::id() !== $user->id) {
             return redirect()->route('dashboard')
                 ->with('error', 'You do not have permission to access this page.');
@@ -111,15 +77,9 @@ class UserController extends Controller
         return view('users.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified user.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
-        // Users can only edit their own profile, admin can edit any
+
         if (!Auth::user()->hasRole('admin') && Auth::id() !== $user->id) {
             return redirect()->route('dashboard')
                 ->with('error', 'You do not have permission to access this page.');
@@ -129,13 +89,6 @@ class UserController extends Controller
         return view('users.edit', compact('user', 'roles'));
     }
 
-    /**
-     * Update the specified user in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $user)
     {
         // Users can only update their own profile, admin can update any
@@ -164,12 +117,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified user from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $user)
     {
         // Only admin can delete users and cannot delete themselves
@@ -183,13 +130,6 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully.');
     }
-
-    /**
-     * Toggle user active status.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function toggleActive(User $user)
     {
         // Only admin can toggle active status and cannot deactivate themselves
@@ -204,15 +144,9 @@ class UserController extends Controller
             ->with('success', 'User ' . ($updatedUser->is_active ? 'activated' : 'deactivated') . ' successfully.');
     }
 
-    /**
-     * Search users by name, email, or role.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function search(Request $request)
     {
-        // Only admin can search users
+
         if (!Auth::user()->hasRole('admin')) {
             return redirect()->route('dashboard')
                 ->with('error', 'You do not have permission to access this page.');

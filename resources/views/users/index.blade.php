@@ -12,106 +12,7 @@
             </ol>
         </div>
     </div>
-    <!-- Create User Modal -->
-    <x-adminlte-modal id="createUserModal" title="Create New User" size="lg">
-        <form method="POST" action="{{ route('users.store') }}" id="createUserForm">
-            @csrf
 
-            <!-- Name -->
-            <div class="form-group">
-                <label for="create_name">Name</label>
-                <input id="create_name" type="text" class="form-control" name="name" required autofocus>
-            </div>
-
-            <!-- Email Address -->
-            <div class="form-group">
-                <label for="create_email">Email</label>
-                <input id="create_email" type="email" class="form-control" name="email" required>
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-                <label for="create_password">Password</label>
-                <input id="create_password" type="password" class="form-control" name="password" required>
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="form-group">
-                <label for="create_password_confirmation">Confirm Password</label>
-                <input id="create_password_confirmation" type="password" class="form-control" name="password_confirmation" required>
-            </div>
-
-            <!-- Role -->
-            <div class="form-group">
-                <label for="create_role_id">Role</label>
-                <select id="create_role_id" name="role_id" class="form-control">
-                    @foreach(\App\Models\Role::all() as $role)
-                        <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <x-slot name="footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Create User</button>
-            </x-slot>
-        </form>
-    </x-adminlte-modal>
-
-    <!-- Edit User Modal -->
-    <x-adminlte-modal id="editUserModal" title="Edit User" size="lg">
-        <form method="POST" id="editUserForm">
-            @csrf
-            @method('PUT')
-
-            <!-- Name -->
-            <div class="form-group">
-                <label for="edit_name">Name</label>
-                <input id="edit_name" type="text" class="form-control" name="name" required>
-            </div>
-
-            <!-- Email Address -->
-            <div class="form-group">
-                <label for="edit_email">Email</label>
-                <input id="edit_email" type="email" class="form-control" name="email" required>
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-                <label for="edit_password">Password (leave blank to keep current)</label>
-                <input id="edit_password" type="password" class="form-control" name="password">
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="form-group">
-                <label for="edit_password_confirmation">Confirm Password</label>
-                <input id="edit_password_confirmation" type="password" class="form-control" name="password_confirmation">
-            </div>
-
-            <!-- Role -->
-            <div class="form-group">
-                <label for="edit_role_id">Role</label>
-                <select id="edit_role_id" name="role_id" class="form-control">
-                    @foreach(\App\Models\Role::all() as $role)
-                        <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <!-- Is Active -->
-            <div class="form-group">
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="edit_is_active" name="is_active" value="1">
-                    <label class="custom-control-label" for="edit_is_active">Active</label>
-                </div>
-            </div>
-
-            <x-slot name="footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Update User</button>
-            </x-slot>
-        </form>
-    </x-adminlte-modal>
 @endsection
 
 @section('content')
@@ -119,7 +20,7 @@
         <div class="card-header">
             <h3 class="card-title">User List</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createUserModal">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-create-user">
                     <i class="fas fa-plus"></i> {{ __('Add New User') }}
                 </button>
             </div>
@@ -205,7 +106,7 @@
                                         <a href="{{ route('users.show', $user) }}" class="btn btn-info btn-sm">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <button type="button" class="btn btn-warning btn-sm edit-user-btn" data-toggle="modal" data-target="#editUserModal" data-user-id="{{ $user->id }}">
+                                        <button type="button" class="btn btn-warning btn-sm edit-user-btn" data-toggle="modal" data-target="#modal-edit-user-{{ $user->id }}" data-user-id="{{ $user->id }}">
                                             <i class="fas fa-edit"></i>
                                         </button>
 
@@ -407,106 +308,6 @@
             </div>
         </div>
     @endforeach
-    <!-- Create User Modal -->
-    <x-adminlte-modal id="createUserModal" title="Create New User" size="lg">
-        <form method="POST" action="{{ route('users.store') }}" id="createUserForm">
-            @csrf
-
-            <!-- Name -->
-            <div class="form-group">
-                <label for="create_name">Name</label>
-                <input id="create_name" type="text" class="form-control" name="name" required autofocus>
-            </div>
-
-            <!-- Email Address -->
-            <div class="form-group">
-                <label for="create_email">Email</label>
-                <input id="create_email" type="email" class="form-control" name="email" required>
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-                <label for="create_password">Password</label>
-                <input id="create_password" type="password" class="form-control" name="password" required>
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="form-group">
-                <label for="create_password_confirmation">Confirm Password</label>
-                <input id="create_password_confirmation" type="password" class="form-control" name="password_confirmation" required>
-            </div>
-
-            <!-- Role -->
-            <div class="form-group">
-                <label for="create_role_id">Role</label>
-                <select id="create_role_id" name="role_id" class="form-control">
-                    @foreach(\App\Models\Role::all() as $role)
-                        <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <x-slot name="footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Create User</button>
-            </x-slot>
-        </form>
-    </x-adminlte-modal>
-
-    <!-- Edit User Modal -->
-    <x-adminlte-modal id="editUserModal" title="Edit User" size="lg">
-        <form method="POST" id="editUserForm">
-            @csrf
-            @method('PUT')
-
-            <!-- Name -->
-            <div class="form-group">
-                <label for="edit_name">Name</label>
-                <input id="edit_name" type="text" class="form-control" name="name" required>
-            </div>
-
-            <!-- Email Address -->
-            <div class="form-group">
-                <label for="edit_email">Email</label>
-                <input id="edit_email" type="email" class="form-control" name="email" required>
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-                <label for="edit_password">Password (leave blank to keep current)</label>
-                <input id="edit_password" type="password" class="form-control" name="password">
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="form-group">
-                <label for="edit_password_confirmation">Confirm Password</label>
-                <input id="edit_password_confirmation" type="password" class="form-control" name="password_confirmation">
-            </div>
-
-            <!-- Role -->
-            <div class="form-group">
-                <label for="edit_role_id">Role</label>
-                <select id="edit_role_id" name="role_id" class="form-control">
-                    @foreach(\App\Models\Role::all() as $role)
-                        <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <!-- Is Active -->
-            <div class="form-group">
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="edit_is_active" name="is_active" value="1">
-                    <label class="custom-control-label" for="edit_is_active">Active</label>
-                </div>
-            </div>
-
-            <x-slot name="footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Update User</button>
-            </x-slot>
-        </form>
-    </x-adminlte-modal>
 @endsection
 
 @push('scripts')
@@ -515,21 +316,19 @@
         // Handle edit user button click
         $('.edit-user-btn').on('click', function() {
             const userId = $(this).data('user-id');
-            const form = $('#editUserForm');
-
-            // Set the form action URL
-            form.attr('action', `/users/${userId}`);
-
+            
+            // No need to update form action as it's already set in the form
+            
             // Fetch user data and populate the form
             $.ajax({
                 url: `/users/${userId}`,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    $('#edit_name').val(data.name);
-                    $('#edit_email').val(data.email);
-                    $('#edit_role_id').val(data.role_id);
-                    $('#edit_is_active').prop('checked', data.is_active === 1);
+                    $(`#name-${userId}`).val(data.name);
+                    $(`#email-${userId}`).val(data.email);
+                    $(`#role_id-${userId}`).val(data.role_id);
+                    $(`#is_active-${userId}`).val(data.is_active ? 1 : 0);
                 },
                 error: function(xhr) {
                     console.error('Error fetching user data:', xhr);

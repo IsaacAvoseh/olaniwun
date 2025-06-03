@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Olaniwun</b>MS',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'https://th.bing.com/th/id/OIP.md_AlT4F6v7itbQWnOo44gHaCS?w=308&h=108&c=7&r=0&o=5&dpr=1.5&pid=1.7',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'https://th.bing.com/th/id/OIP.md_AlT4F6v7itbQWnOo44gHaCS?w=308&h=108&c=7&r=0&o=5&dpr=1.5&pid=1.7',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -110,10 +110,10 @@ return [
     */
 
     'preloader' => [
-        'enabled' => false,
+        'enabled' => true,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'https://th.bing.com/th/id/OIP.md_AlT4F6v7itbQWnOo44gHaCS?w=308&h=108&c=7&r=0&o=5&dpr=1.5&pid=1.7',
             'alt' => ' Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -350,6 +350,7 @@ return [
                     'text' => 'Create Project',
                     'url'  => 'projects/create',
                     'icon' => 'fas fa-fw fa-plus',
+                    'can'  => 'admin-only',
                 ],
                 [
                     'text' => 'Employees with Multiple Projects',

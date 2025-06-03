@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Drop unnecessary columns from employees table
+
         Schema::table('employees', function (Blueprint $table) {
-            $table->dropSoftDeletes(); // Remove softDeletes column
+            $table->dropSoftDeletes();
         });
 
-        // Drop unnecessary columns from projects table
         Schema::table('projects', function (Blueprint $table) {
             $table->dropColumn([
                 'description',

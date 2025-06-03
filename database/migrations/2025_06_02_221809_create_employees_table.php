@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('department_id')->constrained();
             $table->decimal('salary', 10, 2);
             $table->timestamps();
-            $table->softDeletes(); // For deactivate/reactivate functionality
+            $table->softDeletes();
         });
     }
 

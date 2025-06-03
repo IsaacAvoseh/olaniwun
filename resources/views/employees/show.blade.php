@@ -57,7 +57,7 @@
 
                     <div class="form-group">
                         <label>Salary</label>
-                        <p class="form-control">${{ number_format($employee->salary, 2) }}</p>
+                        <p class="form-control">N{{ number_format($employee->salary, 2) }}</p>
                     </div>
 
                     <div class="form-group">

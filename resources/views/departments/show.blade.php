@@ -48,7 +48,7 @@
                                 <dd class="col-sm-8">{{ $department->employees_count }}</dd>
 
                                 <dt class="col-sm-4">Total Salary</dt>
-                                <dd class="col-sm-8">${{ number_format($department->total_salary, 2) }}</dd>
+                                <dd class="col-sm-8">N{{ number_format($department->total_salary, 2) }}</dd>
 
                                 <dt class="col-sm-4">Created At</dt>
                                 <dd class="col-sm-8">{{ $department->created_at->format('F d, Y h:i A') }}</dd>
@@ -78,7 +78,7 @@
                                 <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Total Salary</span>
-                                    <span class="info-box-number">${{ number_format($department->total_salary, 2) }}</span>
+                                    <span class="info-box-number">N{{ number_format($department->total_salary, 2) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                     <tr>
                                         <td>{{ $employee->id }}</td>
                                         <td>{{ $employee->name }}</td>
-                                        <td>${{ number_format($employee->salary, 2) }}</td>
+                                        <td>N{{ number_format($employee->salary, 2) }}</td>
                                         <td>
                                             <a href="{{ route('employees.show', $employee) }}" class="btn btn-info btn-sm">
                                                 <i class="fas fa-eye"></i>

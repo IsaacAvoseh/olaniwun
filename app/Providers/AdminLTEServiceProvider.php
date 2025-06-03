@@ -21,9 +21,8 @@ class AdminLTEServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Define the 'admin-only' gate for AdminLTE menu items
         Gate::define('admin-only', function ($user) {
-            return $user->role === 'admin';
+            return $user->role?->name === 'admin';
         });
     }
 }

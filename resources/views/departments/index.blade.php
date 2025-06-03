@@ -58,7 +58,7 @@
                                 <td>{{ $department->id }}</td>
                                 <td>{{ $department->name }}</td>
                                 <td>{{ $department->employees_count }}</td>
-                                <td>${{ number_format($department->employees_sum_salary ?? 0, 2) }}</td>
+                                <td>N{{ number_format($department->employees_sum_salary ?? 0, 2) }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('departments.show', $department) }}" class="btn btn-info btn-sm">

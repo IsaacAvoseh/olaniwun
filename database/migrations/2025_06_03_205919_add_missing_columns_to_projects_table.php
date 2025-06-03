@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            // Add missing columns if they don't exist
             if (!Schema::hasColumn('projects', 'description')) {
                 $table->text('description')->nullable();
             }
@@ -37,7 +36,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            // Drop columns if they exist
+
             $columns = ['description', 'task', 'start_date', 'end_date', 'status'];
             foreach ($columns as $column) {
                 if (Schema::hasColumn('projects', $column)) {

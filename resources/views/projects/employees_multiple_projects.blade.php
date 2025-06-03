@@ -44,7 +44,7 @@
                                     <td>{{ $employee->id }}</td>
                                     <td>{{ $employee->name }}</td>
                                     <td>{{ $employee->department->name }}</td>
-                                    <td>${{ number_format($employee->salary, 2) }}</td>
+                                    <td>N{{ number_format($employee->salary, 2) }}</td>
                                     <td>{{ $employee->projects_count }}</td>
                                     <td>
                                         <ul>
