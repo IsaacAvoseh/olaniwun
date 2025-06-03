@@ -84,7 +84,7 @@
         <div class="mt-3">
             <p class="mb-0">
                 <a href="{{ route('login') }}">
-                    {{ __('I already have a membership') }}
+                    {{ __('I already have an account ') }}
                 </a>
             </p>
         </div>

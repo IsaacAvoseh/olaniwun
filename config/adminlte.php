@@ -110,11 +110,11 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'alt' => ' Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
             'height' => 60,
@@ -325,13 +325,7 @@ return [
             'text' => 'User Management',
             'url'  => 'users',
             'icon' => 'fas fa-fw fa-users',
-            // 'can'  => 'admin-only',
-        ],
-        [
-            'text' => 'Account Management',
-            'url'  => 'profile',
-            'icon' => 'fas fa-fw fa-user',
-            // 'can'  => 'admin-only',
+            'can'  => 'admin-only',
         ],
         [
             'text' => 'Departments',
@@ -368,6 +362,12 @@ return [
                     'icon' => 'fas fa-fw fa-money-bill-wave',
                 ],
             ],
+        ],
+        [
+            'text' => 'Account Management',
+            'url'  => 'profile',
+            'icon' => 'fas fa-fw fa-user',
+            'can'  => 'active-user',
         ],
     ],
 
