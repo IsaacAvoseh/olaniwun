@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Olaniwun</b>MS',
-    'logo_img' => 'https://th.bing.com/th/id/OIP.md_AlT4F6v7itbQWnOo44gHaCS?w=308&h=108&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+    'logo_img' => 'https://th.bing.com/th/id/OIP.wJKOIYGxUvkFo5YElf_yxgAAAA?w=80&h=80&c=1&bgcl=e94c26&r=0&o=6&pid=ImgRC',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'https://th.bing.com/th/id/OIP.md_AlT4F6v7itbQWnOo44gHaCS?w=308&h=108&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+            'path' => 'https://th.bing.com/th/id/OIP.wJKOIYGxUvkFo5YElf_yxgAAAA?w=80&h=80&c=1&bgcl=e94c26&r=0&o=6&pid=ImgRC',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -113,7 +113,7 @@ return [
         'enabled' => true,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'https://th.bing.com/th/id/OIP.md_AlT4F6v7itbQWnOo44gHaCS?w=308&h=108&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+            'path' => 'https://th.bing.com/th/id/OIP.wJKOIYGxUvkFo5YElf_yxgAAAA?w=80&h=80&c=1&bgcl=e94c26&r=0&o=6&pid=ImgRC',
             'alt' => ' Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
