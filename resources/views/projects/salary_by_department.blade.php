@@ -118,7 +118,7 @@
                             label: function(context) {
                                 var label = context.label || '';
                                 var value = context.raw || 0;
-                                return label + ': $' + value.toLocaleString();
+                                return label + ': N' + value.toLocaleString();
                             }
                         }
                     }

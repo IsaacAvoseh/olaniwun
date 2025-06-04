@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Services\DepartmentService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class DepartmentController extends Controller
 {
+    protected $departmentService;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param \App\Services\DepartmentService $departmentService
+     * @return void
+     */
+    public function __construct(DepartmentService $departmentService)
+    {
+        $this->departmentService = $departmentService;
+    }
+
     public function index()
     {
-        $departments = Department::withCount('employees')
-            ->withSum('employees', 'salary')
-            ->paginate(10);
+        $departments = $this->departmentService->getPaginatedDepartments(10);
         return view('departments.index', compact('departments'));
     }
 
@@ -21,32 +33,23 @@ class DepartmentController extends Controller
         return view('departments.create');
     }
 
-
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:departments',
-        ]);
-
-        if ($validator->fails()) {
+        try {
+            $this->departmentService->createDepartment($request->all());
+            return redirect()->route('departments.index')
+                ->with('success', 'Department created successfully.');
+        } catch (ValidationException $e) {
             return redirect()->back()
-                ->withErrors($validator)
+                ->withErrors($e->validator)
                 ->withInput();
         }
-
-        Department::create([
-            'name' => $request->name,
-        ]);
-
-        return redirect()->route('departments.index')
-            ->with('success', 'Department created successfully.');
     }
 
     public function show(Department $department)
     {
         return view('departments.show', compact('department'));
     }
-
 
     public function edit(Department $department)
     {
@@ -55,36 +58,26 @@ class DepartmentController extends Controller
 
     public function update(Request $request, Department $department)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:departments,name,' . $department->id,
-        ]);
-
-        if ($validator->fails()) {
+        try {
+            $this->departmentService->updateDepartment($department, $request->all());
+            return redirect()->route('departments.index')
+                ->with('success', 'Department updated successfully.');
+        } catch (ValidationException $e) {
             return redirect()->back()
-                ->withErrors($validator)
+                ->withErrors($e->validator)
                 ->withInput();
         }
-
-        $department->update([
-            'name' => $request->name,
-        ]);
-
-        return redirect()->route('departments.index')
-            ->with('success', 'Department updated successfully.');
     }
-
 
     public function destroy(Department $department)
     {
-        // Check if department has employees before deleting
-        if ($department->employees()->count() > 0) {
+        try {
+            $this->departmentService->deleteDepartment($department);
             return redirect()->route('departments.index')
-                ->with('error', 'Cannot delete department with employees. Reassign employees first.');
+                ->with('success', 'Department deleted successfully.');
+        } catch (ValidationException $e) {
+            return redirect()->route('departments.index')
+                ->with('error', $e->getMessage() ?: 'Cannot delete department with employees. Reassign employees first.');
         }
-
-        $department->delete();
-
-        return redirect()->route('departments.index')
-            ->with('success', 'Department deleted successfully.');
     }
 }
